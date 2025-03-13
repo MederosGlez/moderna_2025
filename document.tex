@@ -1,0 +1,252 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, booktabs, array}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{float}
+
+\title{Resumen Física Moderna}
+\author{}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	\section{Radiación Térmica y Postulado de Planck}
+	\subsection{Deducción de la Fórmula de Rayleigh-Jeans (enfoque clásico)}
+	
+	\textbf{Objetivo}: Relacionar la geometría de la cavidad con las frecuencias permitidas. Para una cavidad cúbica de lado \(a\), las ondas estacionarias deben tener nodos (amplitud cero) en las paredes \(x=0\), \(x=a\), \(y=0\), \(y=a\), \(z=0\), \(z=a\).
+
+	Para una onda propagándose en una dirección arbitraria, se tienen los cosenos directores \(\cos\alpha\), \(\cos\beta\), \(\cos\gamma\):
+	
+	\begin{equation}
+		\lambda_x = \frac{\lambda}{\cos\alpha},\quad \lambda_y = \frac{\lambda}{\cos\beta},\quad \lambda_z = \frac{\lambda}{\cos\gamma}
+	\end{equation}
+	
+	La proyección de la longitud de onda total \(\lambda\) en cada eje define la distancia entre nodos en esa dirección.
+	
+	Como en \(x = a\) debe haber un nodo:
+	\begin{equation}
+		\frac{a}{\lambda_x/2} = n_x \Rightarrow \frac{2a}{\lambda_x} = n_x \quad (n_x \in \mathbb{N}^+)
+	\end{equation}
+	
+	Sustituyendo \(\lambda_x\):
+	\begin{equation}
+		\frac{2a}{c}\nu\cos\alpha = n_x
+	\end{equation}
+	
+	Similar para \(y\) y \(z\). Los enteros \(n_x, n_y, n_z\) determinan el número de nodos en cada dirección.
+	
+	Elevando al cuadrado y sumando:
+	\begin{equation}
+		\left(\frac{2a}{c}\nu\right)^2(\cos^2\alpha + \cos^2\beta + \cos^2\gamma) = n_x^2 + n_y^2 + n_z^2
+	\end{equation}
+	
+	Usando \(\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1\):
+	\begin{equation}
+		\nu = \frac{c}{2a}\sqrt{n_x^2 + n_y^2 + n_z^2}
+	\end{equation}
+	
+	Cada trío \((n_x,n_y,n_z)\) define un modo de oscilación único.
+	
+
+	Por tanto, el número de modos:
+	\begin{equation}
+		N(\nu)d\nu = \frac{1}{8}(4\pi r^2 dr) \times 2 = \frac{8\pi a^3}{c^3}\nu^2 d\nu
+	\end{equation}
+	
+	Donde:
+	\begin{itemize}
+		\item \(r = \frac{2a}{c}\nu\): Radio de la esfera definida por $n_x^2 + n_y^2 + n_z^2$
+		\item Factor \(\frac{1}{8}\): Solo primer octante (\(n_x,n_y,n_z > 0\))
+		\item Factor 2: Dos polarizaciones posibles
+	\end{itemize}
+	
+	\begin{equation}
+		\rho_T(\nu)d\nu = \underbrace{\frac{8\pi\nu^2}{c^3}}_{\substack{\text{Densidad de} \\ \text{modos}}} \times \underbrace{kT}_{\substack{\text{Energía por} \\ \text{modo (equipartición)}}} d\nu
+	\end{equation}
+	
+	\subsection{Deducción de la Fórmula de Planck usando el Ejemplo 1.4}
+	
+	\subsubsection*{Postulado de Energías Discretas}
+	\textbf{Fuente}: Ecuación 1-26 del libro (p. 35).\\
+	Planck propone que la energía de los osciladores en la cavidad solo puede tomar valores discretos:
+	\begin{equation}
+		\mathcal{E}_n = nh\nu \quad \text{con } n = 0,1,2,\ldots
+	\end{equation}
+	donde:
+	\begin{itemize}
+		\item \(h = 6.63 \times 10^{-34}\, \text{J$\cdot$s}\) (Constante de Planck)
+		\item \(\nu\): Frecuencia de oscilación
+	\end{itemize}
+	
+	\subsubsection*{Distribución de Boltzmann Modificada}
+	\textbf{Fuente}: Ecuación 1-20 del libro (p. 32).\\
+	La probabilidad de ocupar el estado \(n\) viene dada por:
+	\begin{equation}
+		P(n) = \frac{e^{-\mathcal{E}_n/kT}}{Z}
+	\end{equation}
+	donde:
+	\begin{itemize}
+		\item \(Z = \sum_{n=0}^\infty e^{-\mathcal{E}_n/kT}\) (Función de partición)
+		\item \(k = 1.38 \times 10^{-23}\, \text{J/K}\) (Constante de Boltzmann)
+		\item \(T\): Temperatura absoluta
+	\end{itemize}
+	
+	\subsubsection*{Cálculo de la Función de Partición}
+	Sustituyendo \(\mathcal{E}_n = nh\nu\):
+	\begin{align}
+		Z &= \sum_{n=0}^\infty e^{-nh\nu/kT} \nonumber \\
+		&= 1 + e^{-h\nu/kT} + e^{-2h\nu/kT} + \cdots \nonumber \\
+		&= \frac{1}{1 - e^{-h\nu/kT}} \quad \text{(Serie geométrica con razón } x = e^{-h\nu/kT} < 1)
+	\end{align}
+	
+	\subsubsection*{Cálculo de la Energía Promedio}
+	\textbf{Fuente}: Ecuación 1-21 del libro (p. 33).\\
+	La energía promedio es:
+	\begin{align}
+		\langle \mathcal{E} \rangle &= \frac{1}{Z}\sum_{n=0}^\infty nh\nu e^{-nh\nu/kT} \nonumber \\
+		&= h\nu \frac{\sum_{n=0}^\infty n e^{-nh\nu/kT}}{\sum_{n=0}^\infty e^{-nh\nu/kT}} 
+	\end{align}
+	
+	\subsubsection*{Evaluación de las Series}
+	Usando la identidad para series:
+	\begin{equation}
+		\sum_{n=0}^\infty n x^n = \frac{x}{(1 - x)^2} \quad \text{con } x = e^{-h\nu/kT}
+	\end{equation}
+	
+	Sustituyendo en (5):
+	\begin{align}
+		\langle \mathcal{E} \rangle &= h\nu \frac{e^{-h\nu/kT}/(1 - e^{-h\nu/kT})^2}{1/(1 - e^{-h\nu/kT})} \nonumber \\
+		&= h\nu \frac{e^{-h\nu/kT}}{1 - e^{-h\nu/kT}} \nonumber \\
+		&= \frac{h\nu}{e^{h\nu/kT} - 1} \quad \text{(Ecuación clave de Planck)}
+	\end{align}
+	
+	\subsubsection*{Densidad de Energía Espectral}
+	\textbf{Fuente}: Combinación con densidad de modos de Rayleigh-Jeans (p. 30).\\
+	La densidad de energía total se obtiene multiplicando por el número de modos:
+	\begin{equation}
+		\rho_T(\nu)d\nu = \underbrace{\frac{8\pi \nu^2}{c^3}}_{\substack{\text{Densidad de} \\ \text{modos de R-J}}} \times \underbrace{\frac{h\nu}{e^{h\nu/kT} - 1}}_{\substack{\text{Energía promedio} \\ \text{de Planck}} \times d\nu}
+	\end{equation}
+	
+	\subsubsection*{Relación con Leyes Empíricas}
+	\begin{itemize}
+		\item \textbf{Ley de Wien (\(\nu \to \infty\))}: 
+		\begin{equation}
+			e^{h\nu/kT} \gg 1 \Rightarrow \rho_T(\nu) \approx \frac{8\pi h\nu^3}{c^3}e^{-h\nu/kT}
+		\end{equation}
+		
+		\item \textbf{Ley de Stefan-Boltzmann}:
+		\begin{align}
+			R_T &= \int_0^\infty \frac{c}{4}\rho_T(\nu)d\nu \nonumber \\
+			&= \frac{2\pi h}{c^2} \int_0^\infty \frac{\nu^3}{e^{h\nu/kT} - 1}d\nu \nonumber \\
+			&= \sigma T^4 \quad \text{con } \sigma = \frac{2\pi^5 k^4}{15c^2 h^3}
+		\end{align}
+	\end{itemize}
+	
+	\subsubsection*{Tabla de Factos}
+	\begin{tabular}{p{3cm}p{6cm}p{5cm}}
+		\toprule
+		\textbf{Paso} & \textbf{Justificación Matemática} & \textbf{Base Física} \\
+		\midrule
+		Cuantización & \(\mathcal{E}_n = nh\nu\) & Postulado de Planck (evitar catástrofe UV) \\
+		Distribución & \(P(n) \propto e^{-\mathcal{E}_n/kT}\) & Estadística de Boltzmann \\
+		Serie geométrica & \(\sum_{n=0}^\infty x^n = 1/(1-x)\) & \(x = e^{-h\nu/kT} < 1\) garantiza convergencia \\
+		Energía promedio & \(\sum n x^n = x/(1-x)^2\) & Desarrollo matemático de series \\
+		Límite Wien & \(e^{h\nu/kT} \gg 1\) & Comportamiento a altas frecuencias \\
+		Integral Stefan & \(\int_0^\infty \frac{x^3}{e^x - 1}dx = \pi^4/15\) & Solución de integral estándar \\
+		\bottomrule
+	\end{tabular}
+	
+	\subsection*{Glosario de Términos}
+	\begin{tabular}{p{2.5cm}p{4cm}p{3cm}}
+		\toprule
+		\textbf{Símbolo} & \textbf{Definición Conceptual} & \textbf{Unidades} \\
+		\midrule
+		\(\mathcal{E}_n\) & Energía del estado cuántico n & J \\
+		\(Z\) & Función de partición (suma de estados) & Adimensional \\
+		\(\langle \mathcal{E} \rangle\) & Energía promedio por modo & J \\
+		\(\rho_T(\nu)\) & Densidad espectral de energía & J/m³Hz \\
+		\(h\) & Cuanto elemental de acción & J$\cdot$s \\
+		\(k\) & Constante de Boltzmann & J/K \\
+		\(c\) & Velocidad de la luz & m/s \\
+		\bottomrule
+	\end{tabular}
+	
+
+	\subsection{Tabla Comparativa Detallada}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{p{4cm}cc}
+			\toprule
+			\textbf{Aspecto} & \textbf{Rayleigh-Jeans} & \textbf{Planck} \\
+			\midrule
+			Tratamiento energético & Continuo & Cuantizado (\(\Delta E = h\nu\)) \\
+			Distribución de energía & Equipartición (\(kT\)) & \(\frac{h\nu}{e^{h\nu/kT} - 1}\) \\
+			Comportamiento a altas \(\nu\) & \(\rho_T \propto \nu^2\) (Catástrofe) & \(\rho_T \propto \nu^3 e^{-h\nu/kT}\) \\
+			Relación con paredes & Nodos fijos (cond. frontera) & Mismo + cuantización energética \\
+			Base matemática & Ondas estacionarias clásicas & Estadística cuántica de Bose \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\subsection{Resumen de Fórmulas y Glosario}
+	\begin{table}[H]
+		\centering
+		\caption{Glosario de Variables y Fórmulas Clave}
+		\begin{tabular}{llll}
+			\toprule
+			\textbf{Símbolo} & \textbf{Definición Conceptual} & \textbf{Unidades} & \textbf{Ecuación} \\
+			\midrule
+			\(\rho_T(\nu)\) & Energía almacenada por unidad de volumen y frecuencia & J/m³Hz & \(\frac{8\pi h\nu^3}{c^3}\frac{1}{e^{h\nu/kT} - 1}\) \\
+			\(R_T\) & Potencia total emitida por unidad de área & W/m² & \(\sigma T^4\) \\
+			\(\lambda_{\text{max}}\) & Longitud de onda de máxima emisión & m & \(\frac{hc}{4.965kT}\) \\
+			\(\sigma\) & Constante de proporcionalidad en ley de Stefan & $W/m^2K^4$ & \(\frac{2\pi^5 k^4}{15c^2h^3}\) \\
+			\(h\) & Cuanto elemental de acción & J$\cdot$s & \(6.63 \times 10^{-34}\) \\
+			\(k\) & Constante de proporcionalidad energética & J/K & \(1.38 \times 10^{-23}\) \\
+			\(c\) & Velocidad de propagación luminosa & m/s & \(3 \times 10^8\) \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\begin{itemize}
+		\item \textbf{Ley de Stefan-Boltzmann}: 
+		\begin{equation*}
+			R_T = \sigma T^4\quad \left[\sigma = 5.67\times10^{-8}\,\text{W/m}^2\text{K}^4\right]
+		\end{equation*}
+		
+		\item \textbf{Ley del desplazamiento de Wien}:
+		\begin{equation*}
+			\lambda_{\text{max}}T = 2.898\times10^{-3}\,\text{mK}
+		\end{equation*}
+	
+		\item \textbf{Número de modos}
+		\begin{equation}
+			N(\nu)d\nu = \frac{8\pi a^3}{c^3}\nu^2 d\nu
+		\end{equation}
+		
+		\item \textbf{Fórmula de Rayleigh-Jeans}:
+		\begin{equation}
+			\rho_T(\nu)d\nu = \frac{8\pi\nu^2}{c^3} kT d\nu \quad \left[\text{J/m}^3\text{Hz}\right]
+		\end{equation}
+		
+		\item \textbf{Densidad de energía (Planck)}:
+		\begin{equation*}
+			\rho_T(\nu) = \frac{8\pi h\nu^3}{c^3}\frac{1}{e^{h\nu/kT} - 1}\quad \left[\text{J/m}^3\text{Hz}\right]
+		\end{equation*}
+	
+		\item \textbf{Relación radiancia-densidad}:
+		\begin{equation}
+			R_T(\nu)d\nu = \frac{c}{4}\rho_T(\nu)d\nu
+		\end{equation}
+		
+		\item \textbf{Constantes}:
+		\begin{align*}
+			h &= 6.63\times10^{-34}\,\text{J$\cdot$s} \quad \text{(Planck)}\\
+			k &= 1.38\times10^{-23}\,\text{J/K} \quad \text{(Boltzmann)}\\
+			c &= 3\times10^8\,\text{m/s} \quad \text{(Velocidad luz)}
+		\end{align*}
+	\end{itemize}
+	
+	
+\end{document}
